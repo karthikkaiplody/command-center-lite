@@ -6,6 +6,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // App info
   getVersion: () => ipcRenderer.invoke('app:getVersion'),
   getPlatform: () => ipcRenderer.invoke('app:getPlatform'),
+  getLoginItemSettings: () => ipcRenderer.invoke('app:getLoginItemSettings'),
+  setLoginItemSettings: (settings) => ipcRenderer.invoke('app:setLoginItemSettings', settings),
 
   // Open external URL in default browser
   openExternal: (url) => ipcRenderer.invoke('shell:openExternal', url),

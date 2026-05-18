@@ -215,6 +215,17 @@ ipcMain.handle('app:getPlatform', () => {
   return process.platform;
 });
 
+ipcMain.handle('app:getLoginItemSettings', () => {
+  const settings = app.getLoginItemSettings();
+  return { openAtLogin: settings.openAtLogin };
+});
+
+ipcMain.handle('app:setLoginItemSettings', (_event, { openAtLogin }) => {
+  app.setLoginItemSettings({ openAtLogin });
+  const updated = app.getLoginItemSettings();
+  return { openAtLogin: updated.openAtLogin };
+});
+
 // Open external URL in default browser
 ipcMain.handle('shell:openExternal', async (_event, url) => {
   return shell.openExternal(url);

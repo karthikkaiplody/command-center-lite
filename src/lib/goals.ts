@@ -52,7 +52,7 @@ function getGoalsApi(): GoalsAPI | null {
   if (!isElectron() || !window.electronAPI?.db?.goals) {
     return null
   }
-  return window.electronAPI.db.goals as GoalsAPI
+  return window.electronAPI.db.goals as unknown as GoalsAPI
 }
 
 // ============================================

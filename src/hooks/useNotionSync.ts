@@ -66,7 +66,7 @@ export function useNotionSync() {
     const api = window.electronAPI.notion
 
     // Get initial sync status
-    api.getSyncStatus().then((status: SyncStatusInternal | null) => {
+    void (api.getSyncStatus() as Promise<SyncStatusInternal | null>).then((status) => {
       if (status) {
         setSyncStatus({
           ...status,
@@ -76,7 +76,7 @@ export function useNotionSync() {
     })
 
     // Check if sync service is running
-    api.isSyncRunning().then(setIsSyncServiceRunning)
+    void (api.isSyncRunning() as Promise<boolean>).then(setIsSyncServiceRunning)
 
     // Set up event listeners
     api.onSyncStarted(() => {
@@ -145,7 +145,7 @@ export function useNotionSync() {
       return { success: false }
     }
 
-    const result = await window.electronAPI.notion.startSync(intervalMinutes)
+    const result = await window.electronAPI.notion.startSync(intervalMinutes) as { success: boolean }
     if (result.success) {
       setIsSyncServiceRunning(true)
     }
@@ -158,7 +158,7 @@ export function useNotionSync() {
       return { success: false }
     }
 
-    const result = await window.electronAPI.notion.stopSync()
+    const result = await window.electronAPI.notion.stopSync() as { success: boolean }
     if (result.success) {
       setIsSyncServiceRunning(false)
     }

@@ -184,6 +184,123 @@ export const MORNING_RITUAL_STEPS: RitualStep[] = [
   },
 ];
 
+// Contact
+export interface Contact {
+  id: string
+  name: string
+  checkInFrequency?: string
+  contactMethod?: string
+  knownFor?: string
+  nextCheckIn?: string
+  lastCheckIn?: string
+  notes?: string
+  company?: string
+  email?: string
+  phone?: string
+  birthday?: string
+  notionId?: string
+}
+
+export interface UpdateContactInput {
+  name?: string
+  company?: string
+  knownFor?: string
+  contactMethod?: string
+  email?: string
+  phone?: string
+  birthday?: string
+  checkInFrequency?: string
+  notes?: string
+}
+
+// Goals
+export interface Goal {
+  id: string
+  title: string
+  description?: string
+  level: GoalLevel
+  category: GoalCategory
+  status: GoalStatus
+  progress?: number
+  parentId?: string | null
+  year?: number
+  season?: Season
+  month?: number
+  week?: number
+  dueDate?: string
+  createdAt: string
+  updatedAt?: string
+}
+
+export interface GoalWithHierarchy extends Goal {
+  children: GoalWithHierarchy[]
+  ancestors: GoalWithHierarchy[]
+  depth?: number
+}
+
+export interface TimePeriod {
+  level: GoalLevel
+  year: number
+  season?: Season
+  month?: number
+  week?: number
+  label: string
+  shortLabel?: string
+  isCurrent?: boolean
+  startDate: Date
+  endDate: Date
+}
+
+export interface CreateGoalInput {
+  title: string
+  description?: string
+  level: GoalLevel
+  category: GoalCategory
+  parentId?: string | null
+  year?: number
+  season?: Season
+  month?: number
+  week?: number
+  dueDate?: string
+}
+
+export interface UpdateGoalInput {
+  title?: string
+  description?: string
+  level?: GoalLevel
+  category?: GoalCategory
+  status?: GoalStatus
+  progress?: number
+  parentId?: string | null
+  year?: number
+  season?: Season
+  month?: number
+  week?: number
+  dueDate?: string
+}
+
+export interface GoalFilters {
+  status?: GoalStatus
+  category?: GoalCategory
+}
+
+// Inbox
+export type InboxSource = 'notion' | 'local' | 'extension'
+export type InboxStatus = 'pending' | 'done' | 'dismissed' | 'deferred'
+
+export interface InboxItem {
+  id: string
+  title: string
+  description?: string
+  source: InboxSource
+  status: InboxStatus
+  createdAt: string
+  deferredUntil?: string
+  routedTo?: string
+  routedType?: 'task' | 'goal' | 'writing' | 'reading'
+  notionId?: string
+}
+
 export const EVENING_RITUAL_STEPS: RitualStep[] = [
   {
     id: 'wins',

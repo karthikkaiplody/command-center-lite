@@ -27,6 +27,5 @@ export function useMeetings() {
 }
 
 export function useContacts() {
-  const { contacts } = useApp()
-  return { contacts }
+  return { contacts: [] }
 }

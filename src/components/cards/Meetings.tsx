@@ -44,9 +44,10 @@ interface MeetingsProps {
   onUpdateMeeting: (id: string, updates: Partial<Pick<Meeting, 'title' | 'date' | 'time' | 'notes' | 'link'>>) => void
   onDeleteMeeting: (id: string) => void
   getCategoryColor: (category: TaskCategory) => string
-  // Block meeting support
+  allContacts?: unknown[]
+  onGetMeetingContacts?: (meetingId: string) => Promise<unknown[]>
+  onSetMeetingContacts?: (meetingId: string, contactIds: string[]) => Promise<void>
   onBlockMeetingTitle?: (title: string) => Promise<void>
-  // Refresh meetings after sync
   onRefreshMeetings?: () => void
 }
 
@@ -57,6 +58,9 @@ export function Meetings({
   onUpdateMeeting,
   onDeleteMeeting,
   getCategoryColor,
+  allContacts: _allContacts,
+  onGetMeetingContacts: _onGetMeetingContacts,
+  onSetMeetingContacts: _onSetMeetingContacts,
   onBlockMeetingTitle,
   onRefreshMeetings,
 }: MeetingsProps) {

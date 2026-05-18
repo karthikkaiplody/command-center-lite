@@ -80,6 +80,8 @@ interface GitHubAllData {
 export interface ElectronAPI {
   getVersion: () => Promise<string>
   getPlatform: () => Promise<string>
+  getLoginItemSettings: () => Promise<{ openAtLogin: boolean }>
+  setLoginItemSettings: (settings: { openAtLogin: boolean }) => Promise<{ openAtLogin: boolean }>
   fs: {
     readFile: (filePath: string) => Promise<string | null>
     writeFile: (filePath: string, data: string) => Promise<boolean>
@@ -135,7 +137,11 @@ export interface ElectronAPI {
       getRecent: (numWeeks?: number) => Promise<WeeklyMetrics[]>
       compute: (year: number, week: number) => Promise<WeeklyMetrics>
     }
+    goals: Record<string, (...args: unknown[]) => Promise<unknown>>
+    contacts: Record<string, (...args: unknown[]) => Promise<unknown>>
+    inbox: Record<string, (...args: unknown[]) => Promise<unknown>>
   }
+  notion?: Record<string, (...args: unknown[]) => Promise<unknown>>
   openExternal: (url: string) => Promise<void>
   config: {
     get: (key?: string) => Promise<unknown>

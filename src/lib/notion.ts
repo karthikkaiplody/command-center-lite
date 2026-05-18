@@ -75,7 +75,7 @@ function getNotionApi(): NotionAPI | null {
   if (!isElectron() || !window.electronAPI?.notion) {
     return null
   }
-  return window.electronAPI.notion as NotionAPI
+  return window.electronAPI.notion as unknown as NotionAPI
 }
 
 /**
@@ -238,6 +238,7 @@ export function notionTaskToTask(notionTask: NotionTask): Omit<Task, 'id' | 'cre
     status: notionTask.status,
     dueDate: notionTask.dueDate || undefined,
     isSyncPriority: false,
+    sortOrder: 0,
     source: 'notion',
     notionId: notionTask.notionId,
   }
@@ -347,8 +348,10 @@ export function notionInboxToInboxItem(item: NotionInboxItem): InboxItem {
   return {
     id: item.notionId,
     notionId: item.notionId,
-    note: item.note,
+    title: item.note,
     description: item.description,
-    dateAdded: item.dateAdded,
+    source: 'notion',
+    status: 'pending',
+    createdAt: item.dateAdded,
   }
 }

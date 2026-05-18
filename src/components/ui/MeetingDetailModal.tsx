@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import type { Meeting, TaskCategory, Contact, MeetingSource } from '../../types'
-import { Badge }from './Badge'
+import type { Meeting, TaskCategory, Contact } from '../../types'
+import { Badge } from './Badge'
 
 interface MeetingDetailModalProps {
   meeting: Meeting | null
@@ -48,7 +48,7 @@ export function MeetingDetailModal({
   onClose,
   onUpdate,
   onDelete,
-  getCategoryColor,
+  getCategoryColor: _getCategoryColor,
   allContacts = [],
   onGetMeetingContacts,
   onSetMeetingContacts,
@@ -98,8 +98,8 @@ export function MeetingDetailModal({
           setSelectedContactIds([])
         })
       } else {
-        setLinkedContacts(meeting.contacts || [])
-        setSelectedContactIds((meeting.contacts || []).map(c => c.id))
+        setLinkedContacts([])
+        setSelectedContactIds([])
       }
     }
   }, [meeting, onGetMeetingContacts])

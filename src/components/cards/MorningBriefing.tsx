@@ -250,7 +250,7 @@ export function MorningBriefing({
       }
       
       // Convert base64 to audio blob and play
-      const audioData = Uint8Array.from(atob(result.audio), c => c.charCodeAt(0))
+      const audioData = Uint8Array.from(atob(result.audio!), c => c.charCodeAt(0))
       const blob = new Blob([audioData], { type: 'audio/mpeg' })
       const url = URL.createObjectURL(blob)
       

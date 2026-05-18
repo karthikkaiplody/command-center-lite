@@ -14,6 +14,28 @@ Built with Electron, React, TypeScript, and Vite.
 
 ## Getting Started
 
+### Quick Install (macOS)
+
+Clone the repo, review the setup script, then run it:
+
+```bash
+git clone https://github.com/karthikkaiplody/command-center-lite.git ~/command-center-lite
+cat ~/command-center-lite/setup.sh   # review before running
+bash ~/command-center-lite/setup.sh
+```
+
+> **Requires:** [Homebrew](https://brew.sh) (used to install Node.js if missing)
+
+The script builds a native `.app`, opens the DMG, and you drag it to Applications. After that, launch from Spotlight (`⌘Space`) or Launchpad — no terminal needed.
+
+> **Why not `bash <(curl ...)`?** That pattern pipes untrusted code directly to a shell with no chance to inspect it. Always download first, review the script, then run it locally.
+
+The app will ask for your name and optional settings on first launch via an in-app settings screen. You can also enable **Launch on Login** in Settings so it starts automatically when you log in.
+
+---
+
+### Manual Setup
+
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) (v18 or higher)
@@ -23,7 +45,7 @@ Built with Electron, React, TypeScript, and Vite.
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/command-center-lite.git
+git clone https://github.com/karthikkaiplody/command-center-lite.git
 cd command-center-lite
 npm install
 ```
@@ -55,32 +77,7 @@ workiq accept-eula
 
 > **Note**: WorkIQ requires admin consent on your Microsoft 365 tenant. If you're not an admin, contact your tenant administrator. See the [Tenant Administrator Enablement Guide](https://github.com/microsoft/work-iq-mcp/blob/main/ADMIN-INSTRUCTIONS.md) for details.
 
-### 3. Configure Environment Variables
-
-Copy the example environment file and fill in your details:
-
-```bash
-cp .env.example .env
-```
-
-Then edit `.env` with your values:
-
-```dotenv
-# ElevenLabs (optional - for text-to-speech briefing)
-ELEVENLABS_API_KEY=your_api_key_here
-ELEVENLABS_VOICE_ID=EST9Ui6982FZPSi7gCHi
-
-# Your name (for personalized greetings)
-NAME=Your Name
-```
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `NAME` | Yes | Your name for personalized greetings |
-| `ELEVENLABS_API_KEY` | No | API key from [ElevenLabs](https://elevenlabs.io/) for text-to-speech |
-| `ELEVENLABS_VOICE_ID` | No | Voice ID to use (default is a good general voice) |
-
-### 4. Run the App
+### 3. Run the App
 
 ```bash
 # Development mode (with hot reload)

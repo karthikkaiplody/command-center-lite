@@ -338,7 +338,7 @@ export function buildGoalTree(goals: Goal[]): GoalWithHierarchy[] {
 
   // Create nodes with empty children arrays
   for (const goal of goals) {
-    goalsById.set(goal.id, { ...goal, children: [], depth: 0 })
+    goalsById.set(goal.id, { ...goal, children: [], ancestors: [], depth: 0 })
   }
 
   // Build tree structure
